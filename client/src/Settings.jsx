@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Settings = (props) => {
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const navigate = useNavigate();
     const user = JSON.parse(localStorage.getItem('user'));
     const token = localStorage.getItem('token');
@@ -30,7 +31,7 @@ const Settings = (props) => {
         let updatedUser = { email, username };
 
         try {
-            const response = await fetch(`http://localhost:3000/users/update_user/${user._id}`, {
+            const response = await fetch(`${apiUrl}/users/update_user/${user._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`, 
@@ -57,7 +58,7 @@ const Settings = (props) => {
 
     async function deleteUser() {
         try {
-            const response = await fetch(`http://localhost:3000/users/delete_user/${user._id}`, {
+            const response = await fetch(`${apiUrl}/users/delete_user/${user._id}`, {
                 method: 'DELETE',
                 headers: {
                     'Authorization': `Bearer ${token}`, 

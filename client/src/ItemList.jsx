@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 
 
 const ItemList = (props) => {
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const prevItemCount = useRef(props.items.length);
     const [isStriked, setIsStriked] = useState([]); 
     const [isOpen, setIsOpen] = useState('');
@@ -40,7 +41,7 @@ const ItemList = (props) => {
             setIsStriked([...isStriked, item._id]);
         }
         try {
-            const response = await fetch(`http://localhost:3000/lists/${props.user._id}/${props.list._id}/update_item/${item._id}`, {
+            const response = await fetch(`${apiUrl}/lists/${props.user._id}/${props.list._id}/update_item/${item._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${props.token}`,  
@@ -77,7 +78,7 @@ const ItemList = (props) => {
             return
         }
         try {
-            const response = await fetch(`http://localhost:3000/lists/${props.user._id}/${props.list._id}/update_item/${item._id}`, {
+            const response = await fetch(`${apiUrl}/lists/${props.user._id}/${props.list._id}/update_item/${item._id}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${props.token}`,  

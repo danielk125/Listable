@@ -4,8 +4,7 @@ const listRoutes = require('./routes/lists.js');
 const cors = require('cors');
 
 require('dotenv').config();
-
-console.log(process.env.PORT);
+console.log(process.env.PORT)
 const PORT = process.env.PORT || 3000;
 const app = express();
 

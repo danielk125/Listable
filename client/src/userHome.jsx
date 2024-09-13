@@ -5,6 +5,7 @@ import Navbar from "./navbar";
 import Settings from "./Settings";
 
 const UserHome = () => {
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const storedUser = JSON.parse(localStorage.getItem('user'));
     const token = localStorage.getItem('token');
 
@@ -24,7 +25,7 @@ const UserHome = () => {
             }
 
             try {
-                const response = await fetch(`http://localhost:3000/lists/${userId}`, {
+                const response = await fetch(`${apiUrl}/lists/${userId}`, {
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,  
@@ -51,7 +52,7 @@ const UserHome = () => {
 
     async function newList(){
         try {
-            const response = await fetch(`http://localhost:3000/lists/create/${userId}`, {
+            const response = await fetch(`${apiUrl}/lists/create/${userId}`, {
                 method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,  
@@ -86,7 +87,7 @@ const UserHome = () => {
 
         setTimeout(async () => {
             try {
-                const response = await fetch(`http://localhost:3000/lists/${userId}/delete_list/${id}`, {
+                const response = await fetch(`${apiUrl}/lists/${userId}/delete_list/${id}`, {
                     method: 'DELETE',
                     headers: {
                         'Authorization': `Bearer ${token}`,  
@@ -114,7 +115,7 @@ const UserHome = () => {
         const id = list._id;
         
         try {
-            const response = await fetch(`http://localhost:3000/lists/${userId}/update_list/${id}`, {
+            const response = await fetch(`${apiUrl}/lists/${userId}/update_list/${id}`, {
                 method: 'PATCH',
                 headers: {
                     'Authorization': `Bearer ${token}`,  

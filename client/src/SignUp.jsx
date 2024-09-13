@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import LogInNavbar from "./LoginNavbar";
 
 const SignUp = () => {
+    const apiUrl = import.meta.env.VITE_API_BASE_URL;
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -30,7 +31,7 @@ const SignUp = () => {
 
         const newUser = { username, password, email };
         try {
-            const response = await fetch('http://localhost:3000/users', {
+            const response = await fetch(`${apiUrl}/users`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
